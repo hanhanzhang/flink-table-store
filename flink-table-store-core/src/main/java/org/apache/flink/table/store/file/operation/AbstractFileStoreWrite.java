@@ -59,6 +59,7 @@ public abstract class AbstractFileStoreWrite<T> implements FileStoreWrite<T> {
 
     @Nullable protected IOManager ioManager;
 
+    // key: partition, value-key: bucket, value-value: RecordWrite
     protected final Map<BinaryRowData, Map<Integer, WriterContainer<T>>> writers;
     private final ExecutorService compactExecutor;
 
@@ -242,6 +243,7 @@ public abstract class AbstractFileStoreWrite<T> implements FileStoreWrite<T> {
                 overwrite
                         ? createEmptyWriterContainer(partition.copy(), bucket, compactExecutor)
                         : createWriterContainer(partition.copy(), bucket, compactExecutor);
+        // KeyValueFileStoreWrite initialize data buffer
         notifyNewWriter(writerContainer.writer);
         return writerContainer;
     }

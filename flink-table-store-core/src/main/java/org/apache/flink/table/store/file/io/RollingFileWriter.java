@@ -80,6 +80,7 @@ public class RollingFileWriter<T, R> implements FileWriter<T, List<R>> {
                 openCurrentWriter();
             }
 
+            // RowDataFileWriter.write
             currentWriter.write(row);
             recordCount += 1;
 

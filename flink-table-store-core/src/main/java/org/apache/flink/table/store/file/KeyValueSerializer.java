@@ -37,8 +37,11 @@ public class KeyValueSerializer extends ObjectSerializer<KeyValue> {
 
     private final int keyArity;
 
+    // sequenceNum + rowKind
     private final GenericRowData reusedMeta;
+    // rowKey + rowKeyMeta(sequenceNum + rowKind)
     private final JoinedRowData reusedKeyWithMeta;
+    // rowKeyWithMeta + rowValue
     private final JoinedRowData reusedRow;
 
     private final OffsetRowData reusedKey;
